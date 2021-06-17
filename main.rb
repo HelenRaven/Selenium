@@ -21,18 +21,18 @@ end
 def load_pre_open_market_to_csv
   @driver.get 'https://www.nseindia.com/'
 
-  market_data = @wait.until{ @driver.find_element(:link_text, 'MARKET DATA')}
+  market_data = @wait.until { @driver.find_element(:link_text, 'MARKET DATA') }
   sleep(1)
   @driver.action.move_to(market_data).perform
 
-  pre_open = @wait.until{ @driver.find_element(:link_text, 'Pre-Open Market')}
+  pre_open = @wait.until { @driver.find_element(:link_text, 'Pre-Open Market') }
   sleep(1)
   @driver.action.move_to(pre_open).perform
   pre_open.click
 
   rows = [%w[name price]]
 
-  tb = @wait.until{ @driver.find_element(:css, 'div#table-preOpen')}
+  tb = @wait.until { @driver.find_element(:css, 'div#table-preOpen') }
   slow_scroll(tb)
 
   table = @driver.find_elements(:css, 'table#livePreTable tbody tr')
@@ -52,21 +52,21 @@ end
 def user_scenary
   @driver.get 'https://www.nseindia.com/'
 
-  graph = @wait.until{ @driver.find_element(:css, 'div#tab1_container') }
+  graph = @wait.until { @driver.find_element(:css, 'div#tab1_container') }
   slow_scroll(graph)
 
-  nifty_bank = @wait.until{ @driver.find_element(:css, '[href="#NIFTY BANK"]') }
+  nifty_bank = @wait.until { @driver.find_element(:css, '[href="#NIFTY BANK"]') }
   slow_scroll(nifty_bank)
   nifty_bank.click
 
-  tb = @wait.until{@driver.find_element(:css, 'div#tab4_gainers_loosers')}
+  tb = @wait.until { @driver.find_element(:css, 'div#tab4_gainers_loosers') }
   slow_scroll(tb)
   view_all = tb.find_element(:css, 'img')
   view_all.click
 
-  table = @wait.until{ @driver.find_element(:css, 'table#equityStockTable')}
+  table = @wait.until { @driver.find_element(:css, 'table#equityStockTable') }
   slow_scroll(table)
-  select_element = @wait.until{ @driver.find_element(id: 'equitieStockSelect')}
+  select_element = @wait.until { @driver.find_element(id: 'equitieStockSelect') }
   slow_scroll(select_element)
   select_object = Selenium::WebDriver::Support::Select.new(select_element)
   select_object.select_by(:text, 'NIFTY ALPHA 50')
