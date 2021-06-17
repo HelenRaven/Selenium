@@ -39,6 +39,6 @@
  
   - запускаем скрипт
     ``` 
-    ruby main.rb
+    $ ruby main.rb
     ```
  
